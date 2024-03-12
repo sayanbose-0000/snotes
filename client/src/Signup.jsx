@@ -27,6 +27,7 @@ const Signup = () => {
       }
       else {
         setError("Error! Try again later");
+        console.log(response)
       }
 
     } catch (err) {

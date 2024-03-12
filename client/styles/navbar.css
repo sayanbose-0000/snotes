@@ -19,7 +19,7 @@
 /*    --border_light_color: green;*/
 /*}*/
 
-.navbar > .goodnotes {
+.navbar>.goodnotes {
     text-decoration: none;
     color: #6a12b8;
     font-weight: 700;
@@ -27,24 +27,32 @@
 
 }
 
-.register{
+.register {
     background-color: yellowgreen;
 }
 
-
-.register > .login,
-.register > .signup {
+.register>.login,
+.register>.signup,
+.register>.username,
+.register>.logout {
     padding-right: 5px;
     font-size: 1rem;
     text-decoration: none;
     background-color: yellowgreen;
     color: #222;
     font-weight: 600;
+    cursor: pointer;
 }
 
-.register > .login:hover,
-.register > .signup:hover,
-.navbar > .goodnotes:hover {
+.register>.username {
+    display: inline-block;
+    color: #6a12b8;
+}
+
+.register>.login:hover,
+.register>.signup:hover,
+.navbar>.goodnotes:hover,
+.register>.logout:hover {
     text-decoration: underline;
 }
 
