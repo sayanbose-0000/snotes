@@ -1,0 +1,57 @@
+.navbar {
+    width: 100%;
+    min-height: 68px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    outline-offset: -6px;
+    outline: 3px dashed #222;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    background-color: yellowgreen;
+    border-radius: 10px;
+}
+
+/*:root {*/
+/*    --border_light_color: green;*/
+/*}*/
+
+.navbar > .goodnotes {
+    text-decoration: none;
+    color: #6a12b8;
+    font-weight: 700;
+    background-color: yellowgreen;
+
+}
+
+.register{
+    background-color: yellowgreen;
+}
+
+
+.register > .login,
+.register > .signup {
+    padding-right: 5px;
+    font-size: 1rem;
+    text-decoration: none;
+    background-color: yellowgreen;
+    color: #222;
+    font-weight: 600;
+}
+
+.register > .login:hover,
+.register > .signup:hover,
+.navbar > .goodnotes:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 200px) {
+    .register {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+}

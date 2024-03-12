@@ -1,0 +1,29 @@
+.notes {
+    padding: 15px;
+    max-width: 350px;
+    background-color: yellowgreen;
+    height: 400px;
+    border-radius: 20px;
+    outline-offset: -8px;
+    outline: 3px dashed #222222;
+    cursor: default;
+}
+
+.notes > h3, .notes > p {
+    background-color: yellowgreen;
+    color: #222222;
+}
+
+.notes > h3 {
+    padding: 2px;
+    /*border-bottom: 1px solid #e0e0e0;*/
+    height: 20%;
+    overflow-y: scroll;
+    border-bottom: 3px dashed #222222;
+}
+
+.notes > p{
+    margin-top: 2px;
+    height: 80%;
+    overflow-y: scroll;
+}
