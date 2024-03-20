@@ -6,10 +6,6 @@ import { userContext } from './main';
 const Navbar = () => {
   const { setUserInfo, userInfo } = useContext(userContext);
 
-  const handleLogOut = (e) => {
-    e.preventDefault();
-  }
-
   useEffect(() => {
     fetch('http://localhost:3000/profile', {
       method: "GET",
@@ -20,7 +16,14 @@ const Navbar = () => {
         setUserInfo(info);
       })
     })
+
+    
   }, [])
+
+  const handleLogOut = (e) => {
+    e.preventDefault();
+  }
+
 
   const userName = userInfo?.username;
 

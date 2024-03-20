@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   if (redirect) {
-    return <Navigate to="/" />
+    return <Navigate to={'/'} />
   }
 
   return (
