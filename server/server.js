@@ -32,7 +32,7 @@ const saltRounds = 10; // used in bcrypt for hasing the password
 
 // -------------------------END POINTS----------------------------
 
-// Signup portion here
+// --------Signup portion here---------
 app.post('/signup', (req, res) => {
   const { username, email, password } = req.body;
 
@@ -56,7 +56,7 @@ app.post('/signup', (req, res) => {
 })
 
 
-// Login portion here
+// ------Login portion here---------
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const userDoc = await UserModel.findOne({ email });
@@ -82,6 +82,7 @@ app.post('/login', async (req, res) => {
   }
 })
 
+// -------to verify user--------
 app.get('/profile', async (req, res) => {
   const { token } = req.cookies; // for this we need to use cookie-parser library
   jwt.verify(token, privateKey, (err, info) => {
@@ -90,4 +91,9 @@ app.get('/profile', async (req, res) => {
     }
     res.json(info);
   });
+})
+
+// -------logout-------
+app.post('/logout', (req, res) => {
+  res.cookie('token', '').json(ok);
 })

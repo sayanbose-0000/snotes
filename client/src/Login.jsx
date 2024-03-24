@@ -1,13 +1,16 @@
 import { Navigate } from 'react-router-dom';
 import '../styles/loginandsignup.css';
 import { useState } from 'react';
+import { userContext } from './main';
+import { useEffect, useContext } from 'react';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [redirect, setRedirect] = useState(false);
-
+  const { setUserInfo, userInfo } = useContext(userContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +42,15 @@ const Login = () => {
   };
 
   if (redirect) {
+    fetch('http://localhost:3000/profile', {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: 'include', // since we want to use cookie, we need to use this
+    }).then((res) => {
+      res.json().then((info) => {
+        setUserInfo(info);
+      })
+    })
     return <Navigate to={'/'} />
   }
 
