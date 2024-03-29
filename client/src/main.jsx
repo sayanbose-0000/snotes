@@ -8,6 +8,7 @@ import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 import NewNote from "./NewNote.jsx";
 import { useContext } from 'react';
+import EditNote from './EditNote.jsx';
 
 
 // used for useContext
@@ -44,7 +45,10 @@ const router = createBrowserRouter([
         path: "/addnote",
         element: <NewNote />
       },
-
+      {
+        path: "/editnote/:id",
+        element: <EditNote />
+      },
     ]
   },
 

@@ -135,3 +135,51 @@ app.post('/getnote', async (req, res) => {
     res.status(400).json(err.message)
   }
 })
+
+// ------ delete note ------------
+app.post('/deletenote', async (req, res) => {
+  const { id } = req.body;
+  // console.log(id)
+  try {
+    const userNotes = await PostModel.deleteOne({ _id: id })
+    res.status(200).json(userNotes);
+  } catch (err) {
+    res.status(400).json(err.message)
+  }
+})
+
+
+// ---------- find One -------------
+app.get("/findonenote/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const userNotes = await PostModel.findById(id)
+    res.status(200).json(userNotes);
+  } catch (err) {
+    res.status(400).json(err.message)
+  }
+})
+
+
+// ------ delete note ------------
+app.put('/editnote', (req, res) => {
+  const { title, content, date } = req.body;
+  const { token } = req.cookies; // for this we need to use cookie-parser library
+  jwt.verify(token, privateKey, async (err, info) => {
+    if (err) {
+      res.status(404).json("Make sure you are logged in");
+    }
+    const author = info.id;
+    try {
+      const userCreatedNote = await PostModel.updateOne({
+        title,
+        content,
+        date,
+        author
+      });
+      res.status(200).json("Added note");
+    } catch (err) {
+      res.status(400).json(err.message)
+    }
+  });
+})

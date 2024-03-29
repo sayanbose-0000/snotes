@@ -30,7 +30,7 @@
     overflow-y: scroll;
 }
 
-.notes> .bottombar{
+.notes>.bottombar {
     /* height: 10%; */
     padding: 2px 0 0 0;
     background-color: transparent;
@@ -39,8 +39,31 @@
     gap: 10px;
 }
 
-.bottombar>img{
+.bottombar>img {
     background-color: transparent;
+}
+
+.bottombar>.edit {
+    cursor: pointer;
+}
+
+.bottombar>.delete {
+    cursor: pointer;
+}
+
+.link,
+.link img {
+    background-color: transparent;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link img {
+    height: max-content;
 }
 
 @media only screen and (max-width: 425px) {
@@ -57,7 +80,7 @@
         height: 60%;
     }
 
-    .bottombar{
+    .bottombar {
         height: 10%;
     }
 }

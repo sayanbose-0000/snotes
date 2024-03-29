@@ -18,11 +18,7 @@
     border-radius: 10px;
 }
 
-@media only screen and (max-width: 6425px) {
-    .loginandsignup>form {
-        border: none;
-    }
-}
+
 
 .loginandsignup>form>input,
 .loginandsignup>form>button {
@@ -46,4 +42,10 @@
 .loginandsignup>form>button:hover {
     background-color: whitesmoke;
     color: #222222;
+}
+
+@media only screen and (max-width: 6425px) {
+    .loginandsignup>form {
+        border: none;
+    }
 }
