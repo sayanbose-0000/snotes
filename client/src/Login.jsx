@@ -15,7 +15,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log();
     try {
       const response = await fetch('http://localhost:3000/login', {
         method: "POST",
@@ -42,15 +41,6 @@ const Login = () => {
   };
 
   if (redirect) {
-    fetch('http://localhost:3000/profile', {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: 'include', // since we want to use cookie, we need to use this
-    }).then((res) => {
-      res.json().then((info) => {
-        setUserInfo(info);
-      })
-    })
     return <Navigate to={'/'} />
   }
 

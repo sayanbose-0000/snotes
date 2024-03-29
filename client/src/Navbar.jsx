@@ -1,9 +1,23 @@
 import '../styles/navbar.css';
 import { Link } from "react-router-dom";
-
+import { userContext } from './main';
+import { useEffect, useContext } from 'react';
 
 const Navbar = () => {
-  console.log("Layout");
+  const { setUserInfo, userInfo } = useContext(userContext);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/profile', {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: 'include', // since we want to use cookie, we need to use this
+    }).then((res) => {
+      res.json().then((info) => {
+        setUserInfo(info);
+      })
+    })
+  },[])
+
 
   const handleLogOut = (e) => {
     e.preventDefault();
@@ -15,6 +29,7 @@ const Navbar = () => {
 
     setUserInfo(null);
   }
+
 
   const userName = userInfo?.username;
 

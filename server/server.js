@@ -2,10 +2,11 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import UserModel from './models/UserModel.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
+import UserModel from './models/UserModel.js';
+import PostModel from './models/PostModel.js';
 
 dotenv.config(); // dot env is used to get values from environment variables
 const privateKey = process.env.PRIVATE_KEY;
@@ -32,7 +33,7 @@ const saltRounds = 10; // used in bcrypt for hasing the password
 
 // -------------------------END POINTS----------------------------
 
-// --------Signup portion here---------
+// -------- Signup portion here ---------
 app.post('/signup', (req, res) => {
   const { username, email, password } = req.body;
 
@@ -56,7 +57,7 @@ app.post('/signup', (req, res) => {
 })
 
 
-// ------Login portion here---------
+// ------ Login portion here ---------
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const userDoc = await UserModel.findOne({ email });
@@ -82,7 +83,8 @@ app.post('/login', async (req, res) => {
   }
 })
 
-// -------to verify user--------
+
+// ------- to verify user --------
 app.get('/profile', async (req, res) => {
   const { token } = req.cookies; // for this we need to use cookie-parser library
   jwt.verify(token, privateKey, (err, info) => {
@@ -93,7 +95,43 @@ app.get('/profile', async (req, res) => {
   });
 })
 
-// -------logout-------
+
+// ------- logout -------
 app.post('/logout', (req, res) => {
   res.cookie('token', '').json(ok);
+})
+
+
+// -------- new note ----------
+app.post('/newnote', (req, res) => {
+  const { title, content, date } = req.body;
+  const { token } = req.cookies; // for this we need to use cookie-parser library
+  jwt.verify(token, privateKey, async (err, info) => {
+    if (err) {
+      res.status(404).json("Make sure you are logged in");
+    }
+    const author = info.id;
+    try {
+      const userCreatedNote = await PostModel.create({
+        title,
+        content,
+        date,
+        author
+      });
+      res.status(200).json("Added note");
+    } catch (err) {
+      res.status(400).json(err.message)
+    }
+  });
+})
+
+// --------- fetch notes ----------
+app.post('/getnote', async (req, res) => {
+  const { id } = req.body;
+  try {
+    const userNotes = await PostModel.find({ author: id }).sort({ date: -1 });
+    res.status(200).json(userNotes);
+  } catch (err) {
+    res.status(400).json(err.message)
+  }
 })

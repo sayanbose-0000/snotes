@@ -1,5 +1,6 @@
 .notes {
     padding: 15px;
+    min-width: 350px;
     max-width: 350px;
     background-color: yellowgreen;
     height: 400px;
@@ -9,12 +10,13 @@
     cursor: default;
 }
 
-.notes > h3, .notes > p {
+.notes>h3,
+.notes>p {
     background-color: yellowgreen;
     color: #222222;
 }
 
-.notes > h3 {
+.notes>h3 {
     padding: 2px;
     /*border-bottom: 1px solid #e0e0e0;*/
     height: 20%;
@@ -22,8 +24,40 @@
     border-bottom: 3px dashed #222222;
 }
 
-.notes > p{
+.notes>p {
     margin-top: 2px;
-    height: 80%;
+    height: 70%;
     overflow-y: scroll;
+}
+
+.notes> .bottombar{
+    /* height: 10%; */
+    padding: 2px 0 0 0;
+    background-color: transparent;
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+}
+
+.bottombar>img{
+    background-color: transparent;
+}
+
+@media only screen and (max-width: 425px) {
+    .notes {
+        min-width: 95%;
+        height: 250px;
+    }
+
+    .notes>h3 {
+        height: 30%;
+    }
+
+    .notes>p {
+        height: 60%;
+    }
+
+    .bottombar{
+        height: 10%;
+    }
 }

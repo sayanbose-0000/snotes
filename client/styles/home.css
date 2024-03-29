@@ -4,16 +4,25 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 30px;
+    padding: 30px;
     gap: 40px;
     position: absolute;
     top: 68px;
+    width: 100%;
+
 }
 
 @media only screen and (max-width: 425px) {
     .home {
         margin: 30px 12% 30px 5%;
     }
+}
+
+.no_notes{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .addnotebutton {
