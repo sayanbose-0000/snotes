@@ -9,16 +9,19 @@
     color: whitesmoke;
 }
 
+body {
+    scrollbar-gutter: stable both-edges;
+}
 
 /* Scroll bars */
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: #545454;
     border-radius: 20px;
-    border: 4px solid transparent;
+    /* border: 4px solid transparent; */
     background-clip: content-box;
 }
 

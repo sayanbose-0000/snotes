@@ -10,6 +10,16 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (username.includes(' ')) {
+      setError("Username cannot contain spaces!");
+      return;
+    }
+
+    if (username.length > 6) {
+      setError("Please keep username under 6 letters");
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:3000/signup', {
         method: "POST",
@@ -21,7 +31,7 @@ const Signup = () => {
         })
       });
 
-      if (response.status==200) {
+      if (response.status == 200) {
         setError("Successful signup. You may login now");
       }
       else {

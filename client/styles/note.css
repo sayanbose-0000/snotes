@@ -14,11 +14,12 @@
 .notes>p {
     background-color: yellowgreen;
     color: #222222;
+    line-height: 1.4rem;
 }
 
 .notes>h3 {
     padding: 2px;
-    /*border-bottom: 1px solid #e0e0e0;*/
+    margin-bottom: 1px;
     height: 20%;
     overflow-y: scroll;
     border-bottom: 3px dashed #222222;
@@ -69,6 +70,7 @@
 @media only screen and (max-width: 425px) {
     .notes {
         min-width: 95%;
+        max-width: 95%;
         height: 250px;
     }
 
