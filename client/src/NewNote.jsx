@@ -1,6 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import '../styles/newnote.css';
 import { useState } from 'react';
+import { BACK_URL } from './main';
+
 
 
 const NewNote = () => {
@@ -12,10 +14,10 @@ const NewNote = () => {
   const handleCreateNode = async (e) => {
     e.preventDefault();
 
-    const date  = Date.now()
+    const date = Date.now()
 
     try {
-      const response = await fetch('http://localhost:3000/newnote', {
+      const response = await fetch(`${BACK_URL}/newnote`, {
         method: "POST",
         credentials: 'include',
         headers: { "Content-Type": "application/json" },

@@ -2,13 +2,15 @@ import '../styles/navbar.css';
 import { Link } from "react-router-dom";
 import { userContext } from './main';
 import { useEffect, useContext } from 'react';
+import { BACK_URL } from './main';
+
 
 const Navbar = ({ loggedIn, setLoggedIn }) => {
   const { setUserInfo, userInfo } = useContext(userContext);
   console.log("Navbar")
 
   useEffect(() => {
-    fetch('http://localhost:3000/profile', {
+    fetch(`${BACK_URL}/profile`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: 'include', // since we want to use cookie, we need to use this
@@ -23,7 +25,7 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
   const handleLogOut = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:3000/logout', {
+    fetch(`${BACK_URL}/logout`, {
       method: "POST",
       credentials: 'include'
     })

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { userContext } from './main';
 import { useEffect, useContext, useState } from 'react';
+import { BACK_URL } from "./main";
 
 const Home = () => {
   const [notes, setNotes] = useState([]);
@@ -13,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     if (userId) {
-      fetch('http://localhost:3000/getnote', {
+      fetch(`${BACK_URL}/getnote`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

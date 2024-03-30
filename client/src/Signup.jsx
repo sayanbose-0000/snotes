@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import '../styles/loginandsignup.css'
+import '../styles/loginandsignup.css';
+import { BACK_URL } from './main';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -21,7 +22,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/signup', {
+      const response = await fetch(`${BACK_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

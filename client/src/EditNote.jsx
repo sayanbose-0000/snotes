@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import '../styles/newnote.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { BACK_URL } from './main';
 
 
 const EditNode = () => {
@@ -12,7 +13,7 @@ const EditNode = () => {
   const userId = useParams(); // used to get id that is present in the navigation address
 
   useEffect(() => {
-    fetch(`http://localhost:3000/findonenote/${userId.id}`).then((response) => {
+    fetch(`${BACK_URL}/findonenote/${userId.id}`).then((response) => {
       response.json().then((data) => {
         setTitle(data.title)
         setContent(data.content)
@@ -27,7 +28,7 @@ const EditNode = () => {
     const date  = Date.now()
 
     try {
-      const response = await fetch('http://localhost:3000/editnote', {
+      const response = await fetch(`${BACK_URL}/editnote`, {
         method: "PUT",
         credentials: 'include',
         headers: { "Content-Type": "application/json" },

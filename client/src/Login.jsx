@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { userContext } from './main';
 import { useEffect, useContext } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import { BACK_URL } from './main';
+
 
 
 const Login = () => {
@@ -18,7 +20,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch(`${BACK_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: 'include', // since we want to set cookie, we need to use this. Actually when we set cookie, we do it in PORT 3000 in the backend. But how will it come to the front end in PORT: 5173? Using this we can do the same

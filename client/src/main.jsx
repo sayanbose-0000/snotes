@@ -10,7 +10,6 @@ import NewNote from "./NewNote.jsx";
 import { useContext } from 'react';
 import EditNote from './EditNote.jsx';
 
-
 // used for useContext
 const userContext = createContext({});
 
@@ -23,7 +22,9 @@ const UserContextProvider = ({ children }) => {
   )
 }
 
-export { userContext };
+const BACK_URL = import.meta.env.VITE_API_BASE_URL;
+
+export { userContext, BACK_URL };
 
 const router = createBrowserRouter([
   {
