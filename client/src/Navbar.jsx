@@ -7,7 +7,6 @@ import { BACK_URL } from './main';
 
 const Navbar = ({ loggedIn, setLoggedIn }) => {
   const { setUserInfo, userInfo } = useContext(userContext);
-  console.log("Navbar")
 
   useEffect(() => {
     fetch(`${BACK_URL}/profile`, {
