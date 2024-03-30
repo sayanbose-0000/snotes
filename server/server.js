@@ -23,7 +23,7 @@ app.use(cookieParser()); // need this so that the  profile endpoint where we wan
 
 mongoose.connect(MongoURI);
 
-app.listen(port, () => {
+app.listen(frontURL, () => {
   console.log(`Example app listening on port ${port}`);
 })
 
@@ -59,7 +59,7 @@ app.post('/server/signup', (req, res) => {
 
 
 // ------ Login portion here ---------
-app.post('/login', async (req, res) => {
+app.post('/server/login', async (req, res) => {
   const { email, password } = req.body;
   const userDoc = await UserModel.findOne({ email });
   // console.log(userDoc);
