@@ -34,7 +34,7 @@ const saltRounds = 10; // used in bcrypt for hasing the password
 // -------------------------END POINTS----------------------------
 
 // -------- Signup portion here ---------
-app.post('/client/signup', (req, res) => {
+app.post('/server/signup', (req, res) => {
   const { username, email, password } = req.body;
 
   bcrypt.hash(password, saltRounds, async function (err, hash) { // hashing password
@@ -58,7 +58,7 @@ app.post('/client/signup', (req, res) => {
 
 
 // ------ Login portion here ---------
-app.post('/client/login', async (req, res) => {
+app.post('/server/login', async (req, res) => {
   const { email, password } = req.body;
   const userDoc = await UserModel.findOne({ email });
   // console.log(userDoc);
@@ -85,7 +85,7 @@ app.post('/client/login', async (req, res) => {
 
 
 // ------- to verify user --------
-app.get('/client/profile', async (req, res) => {
+app.get('/server/profile', async (req, res) => {
   const { token } = req.cookies; // for this we need to use cookie-parser library
   jwt.verify(token, privateKey, (err, info) => {
     if (err) {
@@ -97,13 +97,13 @@ app.get('/client/profile', async (req, res) => {
 
 
 // ------- logout -------
-app.post('/client/logout', (req, res) => {
+app.post('/server/logout', (req, res) => {
   res.cookie('token', '').json(ok);
 })
 
 
 // -------- new note ----------
-app.post('/client/newnote', (req, res) => {
+app.post('/server/newnote', (req, res) => {
   const { title, content, date } = req.body;
   const { token } = req.cookies; // for this we need to use cookie-parser library
   jwt.verify(token, privateKey, async (err, info) => {
@@ -126,7 +126,7 @@ app.post('/client/newnote', (req, res) => {
 })
 
 // --------- fetch notes ----------
-app.post('/client/getnote', async (req, res) => {
+app.post('/server/getnote', async (req, res) => {
   const { id } = req.body;
   try {
     const userNotes = await PostModel.find({ author: id }).sort({ date: -1 });
@@ -137,7 +137,7 @@ app.post('/client/getnote', async (req, res) => {
 })
 
 // ------ delete note ------------
-app.post('/client/deletenote', async (req, res) => {
+app.post('/server/deletenote', async (req, res) => {
   const { id } = req.body;
   // console.log(id)
   try {
@@ -150,7 +150,7 @@ app.post('/client/deletenote', async (req, res) => {
 
 
 // ---------- find One -------------
-app.get("/client/findonenote/:id", async (req, res) => {
+app.get("/server/findonenote/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const userNotes = await PostModel.findById(id)
@@ -162,7 +162,7 @@ app.get("/client/findonenote/:id", async (req, res) => {
 
 
 // ------ delete note ------------
-app.put('/client/editnote', (req, res) => {
+app.put('/server/editnote', (req, res) => {
   const { title, content, date } = req.body;
   const { token } = req.cookies; // for this we need to use cookie-parser library
   jwt.verify(token, privateKey, async (err, info) => {
