@@ -23,13 +23,11 @@ app.use(cookieParser()); // need this so that the  profile endpoint where we wan
 
 mongoose.connect(MongoURI);
 
-app.listen(frontURL, () => {
+app.listen(`${frontURL}/server`, () => {
   console.log(`Example app listening on port ${port}`);
 })
 
 const saltRounds = 10; // used in bcrypt for hasing the password
-
-
 
 
 // -------------------------END POINTS----------------------------
@@ -59,7 +57,7 @@ app.post('/server/signup', (req, res) => {
 
 
 // ------ Login portion here ---------
-app.post('/server/login', async (req, res) => {
+app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const userDoc = await UserModel.findOne({ email });
   // console.log(userDoc);
