@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { userContext } from './main';
 import { useEffect, useContext } from 'react';
 
-const Navbar = () => {
+const Navbar = ({ loggedIn, setLoggedIn }) => {
   const { setUserInfo, userInfo } = useContext(userContext);
+  console.log("Navbar")
 
   useEffect(() => {
     fetch('http://localhost:3000/profile', {
@@ -16,7 +17,7 @@ const Navbar = () => {
         setUserInfo(info);
       })
     })
-  },[])
+  }, [loggedIn])
 
 
   const handleLogOut = (e) => {

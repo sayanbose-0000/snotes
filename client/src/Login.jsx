@@ -3,9 +3,11 @@ import '../styles/loginandsignup.css';
 import { useState } from 'react';
 import { userContext } from './main';
 import { useEffect, useContext } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 
 const Login = () => {
+  const [LoggedIn, setLoggedIn] = useOutletContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,6 +30,7 @@ const Login = () => {
 
       if (response.ok) {
         setRedirect(true);
+        setUserInfo(response.json())
       }
 
       else {
@@ -41,14 +44,15 @@ const Login = () => {
   };
 
   if (redirect) {
+    setLoggedIn(true);
     return <Navigate to={'/'} />
   }
 
   return (
     <div className='loginandsignup'>
       <form>
-        <input type="email" placeholder="Enter email... " required value={email} onChange={(e) => { setEmail(e.target.value) }} />
-        <input type="password" placeholder="Enter password... " required value={password} onChange={(e) => { setPassword(e.target.value) }} />
+        <input type="email" placeholder="Enter email... " required value={email} onChange={(e) => { setEmail(e.target.value) }} autoComplete='user-name' />
+        <input type="password" placeholder="Enter password... " required value={password} onChange={(e) => { setPassword(e.target.value) }} autoComplete='current-password' />
         <button className='submit' onClick={(e) => { handleSubmit(e) }}>Login</button>
         <p>{error}</p>
       </form>

@@ -21,7 +21,8 @@
 
 .navbar>.goodnotes {
     text-decoration: none;
-    color: #6a12b8;
+    /* color: #6a12b8; */
+    color: rgb(80, 4, 174);
     font-weight: 700;
     background-color: yellowgreen;
 
@@ -46,7 +47,8 @@
 
 .register>.username {
     display: inline-block;
-    color: #6a12b8;
+    /* color: #6a12b8; */
+    color: rgb(80, 4, 174);
 }
 
 .register>.login:hover,

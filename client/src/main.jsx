@@ -12,9 +12,9 @@ import EditNote from './EditNote.jsx';
 
 
 // used for useContext
-export const userContext = createContext({});
+const userContext = createContext({});
 
-const UserContextProvider = ({children}) => {
+const UserContextProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({});
   return (
     <userContext.Provider value={{ userInfo, setUserInfo }}>
@@ -22,6 +22,8 @@ const UserContextProvider = ({children}) => {
     </userContext.Provider>
   )
 }
+
+export { userContext };
 
 const router = createBrowserRouter([
   {
@@ -59,5 +61,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <UserContextProvider>
       <RouterProvider router={router} />
     </UserContextProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
