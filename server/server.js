@@ -77,6 +77,10 @@ app.post('/server/login', async (req, res) => {
       // console.log(token);
       res.cookie('token', token, {
         path: '/', // ensures cookie is available in entire app
+        httpOnly: true,
+        maxAge: 60 * 24 * 7 * 60 * 1000,
+        sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
+        secure: process.env.NODE_ENV === "Development" ? false : true
       });
       res.status(200).json("Successfully signed up");
     }
