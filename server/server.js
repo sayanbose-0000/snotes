@@ -15,10 +15,17 @@ const app = express();
 
 const port = process.env.PORT;
 const MongoURI = process.env.MONGO_URI;
-// const frontURL = process.env.FRONT_URL;
+const frontURL = process.env.FRONT_URL;
+
+const corsOptions = {
+  origin: frontURL,
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
 
 app.use(express.json()); // middleware
-app.use(cors({ credentials: true, origin: process.env.FRONT_URL })); // for preventing cors error
+app.use(cors(corsOptions)); // for preventing cors error
 app.use(cookieParser()); // need this so that the  profile endpoint where we want to access the cookie using req.cookie works
 
 mongoose.connect(MongoURI);
