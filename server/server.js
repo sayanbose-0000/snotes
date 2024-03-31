@@ -185,9 +185,10 @@ app.get("/server/findonenote/:id", async (req, res) => {
 })
 
 
-// ------ delete note ------------
+// ------ edit note ------------
 app.put('/server/editnote', (req, res) => {
   const { title, content, date } = req.body;
+  const { id } = req.params;
   const { token } = req.cookies; // for this we need to use cookie-parser library
   jwt.verify(token, privateKey, async (err, info) => {
     if (err) {
@@ -195,12 +196,17 @@ app.put('/server/editnote', (req, res) => {
     }
     const author = info.id;
     try {
-      const userCreatedNote = await PostModel.updateOne({
-        title,
-        content,
-        date,
-        author
-      });
+      const userCreatedNote = await PostModel.updateOne(
+        {
+          _id: id,
+          author
+        },
+        {
+          title,
+          content,
+          date,
+          author
+        });
       res.status(200).json("Added note");
     } catch (err) {
       res.status(400).json(err.message)
