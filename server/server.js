@@ -75,18 +75,15 @@ app.post('/server/login', async (req, res) => {
     if (passOk) {
       var token = jwt.sign({ username: userDoc.username, id: userDoc.id }, privateKey);
       // console.log(token);
-      // res.cookie('token', token, {
-      //   path: '/', // ensures cookie is available in entire app
-      //   httpOnly: true,
-      //   maxAge: 30 * 60 * 60 * 24 * 1000,
-      //   sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
-      //   secure: process.env.NODE_ENV === "Development" ? false : true
-      // });
 
       res.cookie('token', token, {
-        path: "/",
+        path: '/', // ensures cookie is available in entire app
+        httpOnly: true,
         maxAge: 30 * 60 * 60 * 24 * 1000,
-      })
+        sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
+        secure: process.env.NODE_ENV === "Development" ? false : true
+      });
+
       res.status(200).json("Successfully signed up");
     }
     else {
@@ -113,7 +110,13 @@ app.get('/server/profile', async (req, res) => {
 
 // ------- logout -------
 app.post('/server/logout', (req, res) => {
-  res.cookie('token', '', { path: "/" }).json(ok);
+  res.cookie('token', '', {
+    path: '/', // ensures cookie is available in entire app
+    httpOnly: true,
+    maxAge: 30 * 60 * 60 * 24 * 1000,
+    sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
+    secure: process.env.NODE_ENV === "Development" ? false : true
+  });
   // res.clearCookie('token', {
   //   path: "/",
   //   httpOnly: true,
