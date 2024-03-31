@@ -83,7 +83,10 @@ app.post('/server/login', async (req, res) => {
       //   secure: process.env.NODE_ENV === "Development" ? false : true
       // });
 
-      res.cookie('token', token, { path: "/" })
+      res.cookie('token', token, {
+        path: "/",
+        maxAge: 30 * 60 * 60 * 24 * 1000,
+      })
       res.status(200).json("Successfully signed up");
     }
     else {
