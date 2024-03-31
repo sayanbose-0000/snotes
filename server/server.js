@@ -198,9 +198,6 @@ app.put('/server/editnote', (req, res) => {
     try {
       const userCreatedNote = await PostModel.updateOne(
         {
-          _id: id,
-        },
-        {
           title,
           content,
           date,
