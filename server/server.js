@@ -108,7 +108,8 @@ app.get('/server/profile', async (req, res) => {
 
 // ------- logout -------
 app.post('/server/logout', (req, res) => {
-  res.cookie('token', '').json(ok);
+  // res.cookie('token', '').json(ok);
+  res.clearCookie('token').json(ok);
 })
 
 
