@@ -186,7 +186,7 @@ app.get("/server/findonenote/:id", async (req, res) => {
 
 
 // ------ edit note ------------
-app.put('/server/editnote', (req, res) => {
+app.put('/server/editnote/:id', (req, res) => {
   const { title, content, date } = req.body;
   const { id } = req.params;
   const { token } = req.cookies; // for this we need to use cookie-parser library
@@ -197,6 +197,10 @@ app.put('/server/editnote', (req, res) => {
     const author = info.id;
     try {
       const userCreatedNote = await PostModel.updateOne(
+        {
+          _id: id,
+          author
+        },
         {
           title,
           content,

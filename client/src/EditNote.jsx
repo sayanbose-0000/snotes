@@ -28,7 +28,7 @@ const EditNode = () => {
     const date  = Date.now()
 
     try {
-      const response = await fetch(`${BACK_URL}/editnote`, {
+      const response = await fetch(`${BACK_URL}/editnote/${userId.id}`, {
         method: "PUT",
         credentials: 'include',
         headers: { "Content-Type": "application/json" },
