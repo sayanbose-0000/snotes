@@ -199,7 +199,6 @@ app.put('/server/editnote', (req, res) => {
         title,
         content,
         date,
-        author
       });
       res.status(200).json("Added note");
     } catch (err) {
