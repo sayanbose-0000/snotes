@@ -78,7 +78,7 @@ app.post('/server/login', async (req, res) => {
       res.cookie('token', token, {
         path: '/', // ensures cookie is available in entire app
         httpOnly: true,
-        maxAge: 60 * 24 * 7 * 60 * 1000,
+        maxAge: 30 * 60 * 60 * 24 * 1000,
         sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
         secure: process.env.NODE_ENV === "Development" ? false : true
       });
