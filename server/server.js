@@ -19,7 +19,7 @@ const frontURL = process.env.FRONT_URL;
 
 const corsOptions = {
   origin: frontURL,
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
