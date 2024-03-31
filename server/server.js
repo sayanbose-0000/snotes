@@ -109,10 +109,12 @@ app.get('/server/profile', async (req, res) => {
 // ------- logout -------
 app.post('/server/logout', (req, res) => {
   // res.cookie('token', '').json(ok);    
-  res.clearCookie('token', {
-    path: "/",
-    httpOnly: true,
-    }).json("ok");
+  // res.clearCookie('token', {
+  //   path: "/",
+  //   httpOnly: true,
+  // })
+  res.clearCookie('token', { domain: frontURL, path: '/' });
+  res.json("ok");
 })
 
 
