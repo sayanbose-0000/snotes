@@ -58,7 +58,6 @@ app.post('/server/signup', (req, res) => {
 
 // ------ Login portion here ---------
 app.post('/server/login', async (req, res) => {
-  console.log("I am logging in")
   const { email, password } = req.body;
   const userDoc = await UserModel.findOne({ email });
   // console.log(userDoc);
