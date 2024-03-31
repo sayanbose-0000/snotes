@@ -112,7 +112,7 @@ app.post('/server/logout', (req, res) => {
   res.clearCookie('token', {
     path: "/",
     httpOnly: true,
-    }).json(ok);
+    }).json("ok");
 })
 
 
