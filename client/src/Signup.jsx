@@ -53,7 +53,7 @@ const Signup = () => {
         <input type="text" placeholder="Enter username... " required value={username} onChange={(e) => { setUsername(e.target.value) }} />
         <input type="email" placeholder="Enter email... " required value={email} onChange={(e) => { setEmail(e.target.value) }} />
         <input type="password" placeholder="Enter password... " required value={password} onChange={(e) => { setPassword(e.target.value) }} />
-        <button className='submit' onClick={(e) => { handleSubmit(e) }}>Sign Up</button>
+        <button className='submit' onSubmit={(e) => { handleSubmit(e) }}>Sign Up</button>
         <p>{error}</p>
       </form>
     </div>
