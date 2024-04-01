@@ -50,9 +50,9 @@ const Signup = () => {
   return (
     <div className='loginandsignup'>
       <form>
-        <input type="text" placeholder="Enter username... " required value={username} onChange={(e) => { setUsername(e.target.value) }} autoComplete='username'/>
-        <input type="email" placeholder="Enter email... " required value={email} onChange={(e) => { setEmail(e.target.value) }} autoComplete='email'/>
-        <input type="password" placeholder="Enter password... " required value={password} onChange={(e) => { setPassword(e.target.value) }} autoComplete='new-password'/>
+        <input type="text" placeholder="Enter username... " required value={username} onChange={(e) => { setUsername(e.target.value) }} />
+        <input type="email" placeholder="Enter email... " required value={email} onChange={(e) => { setEmail(e.target.value) }} />
+        <input type="password" placeholder="Enter password... " required value={password} onChange={(e) => { setPassword(e.target.value) }} />
         <button className='submit' onClick={(e) => { handleSubmit(e) }}>Sign Up</button>
         <p>{error}</p>
       </form>
